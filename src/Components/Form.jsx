@@ -2,28 +2,36 @@ import styles from './Form.module.css'
 import useSelect from '../hooks/useSelect'
 
 
-const From = () => {
+const From = ({setCategoria}) => {
 
     const OPCIONES =[
 
         {value: 'general', label:'General'},
-        {value: 'buisness', label:'Negpcios'},
-        {value: 'entertaiment', label:'Entretenimeinto'},
+        {value: 'business', label:'Negpcios'},
+        {value: 'entertainment', label:'Entretenimeinto'},
         {value: 'health', label:'Salud'},
-        {value: 'scinece', label:'Ciencia'}, 
+        {value: 'science', label:'Ciencia'}, 
         {value: 'sports', label:'Deportes'}, 
         {value: 'technology', label:'Tecnología'}, 
 
     ]
 
-    
-
     const [categoria, SelectNoticias] = useSelect('general', OPCIONES);
 
+    const buscarCategoria = (e) => {
+
+          e.preventDefault();
+
+        setCategoria(categoria);
+
+
+    }
+    
     return ( 
         <div className={`${styles.buscador} row`}>
             <div className="col s12 m8 offset-m2">
-                <form>
+                <form 
+                onSubmit={buscarCategoria}>
                     <h2 className={styles.heading}>Encuentra Noticias Por Categorias</h2>
                         <SelectNoticias />
                    <div className="input-field col s12">
